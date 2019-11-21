@@ -1,6 +1,6 @@
 <template>
-  <div id="games">
-    <section class="section main">
+  <div>
+    <section class="section">
       <div class="container">
         <div class="columns is-mobile is-multiline">
           <div
@@ -19,37 +19,36 @@
         </div>
       </div>
     </section>
-    <b-loading :is-full-page="false" :active="isLoading"></b-loading>
+    <b-loading :is-full-page="false" :active="$asyncComputed.games.updating"></b-loading>
     <ss-footer />
   </div>
 </template>
 
 <script>
 import GameCard from "@/components/GameCard.vue";
+import { speedsouls } from "@/api";
 
 export default {
   name: "games",
-  components: { GameCard },
-  data: () => ({
-    games: [],
-    isLoading: false
-  }),
-  async mounted() {
-    this.isLoading = true;
-    this.games = await this.$speedsouls.getGames();
-    this.isLoading = false;
-  }
+  components: {
+    GameCard
+  },
+  asyncComputed: {
+    games: {
+      get() {
+        return speedsouls.getGames();
+      },
+
+      default() {
+        return [];
+      }
+    }
+  },
 };
 </script>
 
-<style scoped lang="scss">
-#games {
-  display: flex;
-  flex-direction: column;
+<style lang="scss" scoped>
+section {
   flex-grow: 1;
-
-  .main {
-    flex-grow: 1;
-  }
 }
 </style>

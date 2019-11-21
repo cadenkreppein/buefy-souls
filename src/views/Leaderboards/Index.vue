@@ -1,10 +1,10 @@
 <template>
-  <div id="leaderboards">
-    <navbar class="is-primary" />
-    <keep-alive include="games">
-      <router-view />
-    </keep-alive>
-  </div>
+  <keep-alive include="games">
+    <main>
+      <navbar class="is-primary" />
+      <router-view :key="$router.fullPath" class="main-content" />
+    </main>
+  </keep-alive>
 </template>
 
 <script>
@@ -17,11 +17,15 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-#leaderboards {
-  display: inherit;
-  flex-direction: inherit;
-  flex-grow: 1;
-  overflow: hidden;
+<style lang="scss" scoped>
+main {
+  display: flex;
+  flex-direction: column;
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 }
 </style>

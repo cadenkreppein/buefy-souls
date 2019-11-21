@@ -1,5 +1,4 @@
-import Vue from "vue";
-import speedsouls from "./speedsouls";
+import SpeedSouls from "./speedsouls";
 import { SnackbarProgrammatic as Snackbar } from "buefy";
 
 const SERVER_URL = "https://www.speedrun.com";
@@ -24,7 +23,7 @@ function errorHandler(response) {
   return response;
 }
 
-Vue.use(speedsouls, {
+export const speedsouls = SpeedSouls({
   BASE_URL,
   errorHandler
 });

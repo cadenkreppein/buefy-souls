@@ -4,14 +4,14 @@ import router from "./router";
 import store from "./store";
 import Buefy from "buefy";
 import VueScrollTo from "vue-scrollto";
-
-import "@/api";
+import AsyncComputed from "vue-async-computed";
 
 // Global components
 import Footer from "@/components/Footer.vue";
 Vue.component("ss-footer", Footer);
 
 Vue.use(VueScrollTo);
+Vue.use(AsyncComputed);
 Vue.use(Buefy, {
   defaultIconPack: "fa"
 });

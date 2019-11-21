@@ -12,6 +12,8 @@ const defaultOptions = {
   }
 };
 
+const sleep = t => new Promise(r => setTimeout(r, t));
+
 /**
  * Custom HTTP client using fetch
  */
@@ -28,6 +30,7 @@ function createClient(BASE_URL, errorHandler) {
        * Parsing the JSON manually instead of using response.json();
        * because the response could be html if the url is wrong
        */
+      await sleep(1000);
       const response = await fetch(`${BASE_URL}${url}?${paramsUrl}`);
       const text = await response.text();
       return JSON.parse(text);

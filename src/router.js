@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home.vue";
-// import speedsouls from "@/api/speedsouls";
+import { speedsouls } from "@/api";
 
 Vue.use(Router);
 
@@ -33,14 +33,10 @@ export default new Router({
         {
           path: ":abbreviation",
           name: "game",
-          component: () => import("@/views/Leaderboards/Game.vue")
+          component: () => import("@/views/Leaderboards/Game.vue"),
+          props: true
         }
       ]
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: () => import("./views/About.vue")
     },
     {
       path: "**",
